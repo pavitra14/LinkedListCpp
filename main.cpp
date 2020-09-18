@@ -187,6 +187,23 @@ void middleNode(Node* list)
   cout<<"Middle Node is: "<<slow->data<<endl;
 }
 
+bool checkCycle(Node* list)
+{
+  Node* slow = list;
+  Node* fast = list;
+  while(fast!=NULL)
+  {
+    fast = fast->next;
+    slow = slow->next;
+    if(fast==NULL)
+      break;
+    fast = fast->next;
+    if(slow == fast)
+      return true;
+  }
+  return false;
+}
+
 int main() {
   // Creating a Linked List
   cout<<"Creating a LinkedList"<<endl;
@@ -235,4 +252,15 @@ int main() {
   middleNode(LinkedList);
   displayList(LinkedList);
   size(LinkedList);
+
+  // Check if List has a cycle
+  Node* CyclicList = createList();
+  Node* cTemp = CyclicList;
+  while(cTemp->next != NULL)
+  {
+    cTemp = cTemp->next;
+  }
+  cTemp->next = CyclicList;
+  cout<<"Cycle in List: "<<checkCycle(CyclicList)<<endl;
+
 }
