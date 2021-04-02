@@ -1,4 +1,3 @@
-#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -12,59 +11,20 @@ class Node {
   }
 };
 
-Node* createList()
+Node* createList(int n)
 {
-  Node* n1 = new Node(10);
-  Node* n2 = new Node(20);
-  Node* n3 = new Node(30);
-  Node* n4 = new Node(40);
-  Node* n5 = new Node(50);
-  Node* n6 = new Node(60);
-  Node* n7 = new Node(70);
-  Node* n8 = new Node(80);
-  Node* n9 = new Node(90);
-  Node* n10 = new Node(100);
-  Node* n11 = new Node(110);
-  Node* n12 = new Node(120);
-  Node* n13 = new Node(130);
-  Node* n14 = new Node(140);
-  Node* n15 = new Node(150);
-  Node* n16 = new Node(160);
-  Node* n17 = new Node(170);
-  Node* n18 = new Node(180);
-  Node* n19 = new Node(190);
-  Node* n20 = new Node(200);
-  Node* n21 = new Node(210);
-  Node* n22 = new Node(220);
-  Node* n23 = new Node(230);
-  Node* n24 = new Node(240);
-  Node* n25 = new Node(250);
-  n1->next= n2;
-  n2->next= n3;
-  n3->next= n4;
-  n4->next= n5;
-  n5->next= n6;
-  n6->next= n7;
-  n7->next= n8;
-  n8->next= n9;
-  n9->next= n10;
-  n10->next= n11;
-  n11->next= n12;
-  n12->next= n13;
-  n13->next= n14;
-  n14->next= n15;
-  n15->next= n16;
-  n16->next= n17;
-  n17->next= n18;
-  n18->next= n19;
-  n19->next= n20;
-  n20->next= n21;
-  n21->next= n22;
-  n22->next= n23;
-  n23->next= n24;
-  n24->next= n25;
-  n25->next= NULL;
-  return n1;
+  //Creating Nodes
+  vector<Node*> nodes; //Vector to store nodes temporarily
+  for(auto i=1; i<=n; ++i)
+  {
+    nodes.push_back(new Node(i*10));
+  }
+  //Connecting individual nodes
+  for(auto i=0; i<n; ++i)
+  {
+    nodes[i]->next = nodes[i+1];
+  }
+  return nodes[0];
 }
 
 void displayList(Node* list)
@@ -207,7 +167,7 @@ bool checkCycle(Node* list)
 int main() {
   // Creating a Linked List
   cout<<"Creating a LinkedList"<<endl;
-  Node* LinkedList = createList();
+  Node* LinkedList = createList(25);
   displayList(LinkedList);
   int s = size(LinkedList);
 
@@ -254,7 +214,7 @@ int main() {
   size(LinkedList);
 
   // Check if List has a cycle
-  Node* CyclicList = createList();
+  Node* CyclicList = createList(25);
   Node* cTemp = CyclicList;
   while(cTemp->next != NULL)
   {
